@@ -9,7 +9,7 @@ const app = express()
 //     }
 // })
 
-const getAllProducts = app.get("/product", (req, res) => {
+const getAllProducts = app.get("/products", (req, res) => {
     const sql = "SELECT * FROM product";
     db.query(sql, (err, data) => {
         if (err) return res.json("error");
