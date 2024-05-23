@@ -9,7 +9,9 @@ require('dotenv').config();
 
 const port = 5000;
 const db = require('./config/db');
+
 const productRoutes = require('./routes/products');
+const inventoryRoutes = require('./routes/inventory');
 
 // General middlewares
 app.use(morgan('dev'));
@@ -42,7 +44,8 @@ app.use((req, res, next) => {
 
 //Routes
 app.get("/", (req, res) => res.json("Hello!"));
-app.use('/products', productRoutes)
+app.use('/products', productRoutes);
+app.use('/inventory', inventoryRoutes);
 
 // Handling errors
 

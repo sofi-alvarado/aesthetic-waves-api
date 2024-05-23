@@ -21,6 +21,6 @@ const Product = {
 		const [{affectedRows}] = await db.query('DELETE FROM product WHERE id = ?', [id]);
     return affectedRows;
 	}
-}
+};
 
 module.exports = Product;
