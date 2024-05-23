@@ -6,8 +6,9 @@ const Inventory = {
 		return inventory;
 	},
 
-  getInventoryItem: async () => {
-
+  getInventoryItem: async (id) => {
+    const [[inventoryItem]] = await db.query('CALL sp_show_inventory_by_id(?)', [id]);
+    return inventoryItem;
   },
 
   createInventoryItem: async () => {

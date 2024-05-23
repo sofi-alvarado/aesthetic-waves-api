@@ -9,6 +9,23 @@ const getInventory = async (req, res) => {
   };
 };
 
+const getInventoryItem = async (req, res) => {
+  try {
+    const inventoryItem = await Inventory.getInventoryItem(req.params.id);
+    console.log(inventoryItem.length);
+    if (inventoryItem == 0) {
+      res.status(404).json({
+        error: 'No inventory item with id ' + req.params.id
+      });
+    } else {
+      res.send(inventoryItem);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
-	getInventory
+	getInventory,
+  getInventoryItem
 };
