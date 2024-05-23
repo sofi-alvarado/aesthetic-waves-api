@@ -3,7 +3,7 @@ const Product = require('../models/product');
 const getAllProducts = async (req, res) => {
   try {
     const product = await Product.getAllProducts();
-    res.status(200).json(product)
+    res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -12,7 +12,6 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
 		const product = await Product.getProductById(req.params.id);
-    console.log(product)
     if (product.length == 0) {
         res.status(404).json({
             error: 'No product with id ' + req.params.id
@@ -21,7 +20,7 @@ const getProductById = async (req, res) => {
         res.send(product);
     }
   } catch {
-		res.status(500).json({ message: error.message })
+		res.status(500).json({ message: error.message });
   }
 };
 
@@ -41,7 +40,7 @@ const deleteProduct = async (req, res) => {
         res.send('Deleted successfully');
     }
 	} catch {
-		res.status(500).json({ message: error.message })
+		res.status(500).json({ message: error.message });
 	}
 }
 

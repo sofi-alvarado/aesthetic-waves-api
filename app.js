@@ -46,11 +46,11 @@ app.use('/products', productRoutes)
 
 // Handling errors
 
-// app.use((req, res, next) => {
-//     const error = new Error('Not found');
-//     error.status = 404
-//     next(error);
-// })
+app.use((req, res, next) => {
+    const error = new Error('Not found');
+    error.status = 404
+    next(error);
+})
 
 app.use((err, req, res, next) => {
   console.log(err);
