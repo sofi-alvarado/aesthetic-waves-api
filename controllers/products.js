@@ -31,7 +31,7 @@ const createEditProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-		const affectedProduct= await Product.deleteProduct(req.params.id);
+		const affectedProduct = await Product.deleteProduct(req.params.id);
     if (affectedProduct == 0) {
         res.status(404).json({
             error: 'No product with id ' + req.params.id

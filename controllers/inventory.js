@@ -25,7 +25,29 @@ const getInventoryItem = async (req, res) => {
   }
 };
 
+const addEditInventoryItem = async (req, res) => {
+  await Inventory.addEditInventoryItem(req.body);
+  res.status(201).send('Created succesfully');
+}
+
+const deleteIventoryItem = async (req, res) => {
+  try {
+    const affectedIventoryItem = await Inventory.deleteIventoryItem(req.params.id);
+    if (affectedIventoryItem == 0) {
+      res.status(404).json({
+        error: 'No Inventory Item with id ' + req.params.id
+      })
+    } else {
+      res.send('Deleted successfully');
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
 	getInventory,
-  getInventoryItem
+  getInventoryItem,
+  addEditInventoryItem,
+  deleteIventoryItem
 };
