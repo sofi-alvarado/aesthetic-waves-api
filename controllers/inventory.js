@@ -38,7 +38,7 @@ const deleteIventoryItem = async (req, res) => {
         error: 'No Inventory Item with id ' + req.params.id
       })
     } else {
-      res.send('Deleted successfully');
+      res.send('Inventory item deleted successfully');
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

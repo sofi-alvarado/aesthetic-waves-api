@@ -13,6 +13,7 @@ const db = require('./config/db');
 const productRoutes = require('./routes/products');
 const inventoryRoutes = require('./routes/inventory');
 const orderRoutes = require('./routes/orders');
+const addressRoutes = require('./routes/address');
 
 // General middlewares
 app.use(morgan('dev'));
@@ -48,6 +49,7 @@ app.get("/", (req, res) => res.json("Hello!"));
 app.use('/products', productRoutes);
 app.use('/inventory', inventoryRoutes);
 app.use('/orders', orderRoutes);
+app.use('/address', addressRoutes);
 
 // Handling errors
 
