@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 const Brand = {
-  getAdress: async () => {
+  getBrands: async () => {
     const [[brand]] = await db.query('CALL sp_show_brand()');
     return brand;
   },

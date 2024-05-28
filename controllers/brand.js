@@ -1,8 +1,8 @@
 const Brand = require('../models/brand');
 
-const getBrand = async (req, res) => {
+const getBrands = async (req, res) => {
   try {
-    const brand = await Brand.getAdress();
+    const brand = await Brand.getBrands();
     res.status(200).json(brand)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -58,7 +58,7 @@ const deleteBrand = async (req, res) => {
 }
 
 module.exports = {
-	getBrand,
+	getBrands,
 	getBrandById,
 	editBrand,
   createBrand,

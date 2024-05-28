@@ -12,7 +12,6 @@ const getInventory = async (req, res) => {
 const getInventoryItem = async (req, res) => {
   try {
     const inventoryItem = await Inventory.getInventoryItem(req.params.id);
-    console.log(inventoryItem.length);
     if (inventoryItem == 0) {
       res.status(404).json({
         error: 'No inventory item with id ' + req.params.id
@@ -26,8 +25,13 @@ const getInventoryItem = async (req, res) => {
 };
 
 const addEditInventoryItem = async (req, res) => {
-  await Inventory.addEditInventoryItem(req.body);
-  res.status(201).send('Created succesfully');
+  try {
+    const addInventory = await Inventory.addEditInventoryItem(req.params.id, req.body);
+    res.status(201).send('Created succesfully');
+    res.send(addInventory);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 const deleteIventoryItem = async (req, res) => {
