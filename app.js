@@ -17,6 +17,7 @@ const addressRoutes = require('./routes/address');
 const brandRoutes = require('./routes/brand');
 const deliveryServiceRoutes = require('./routes/deliveryService');
 const categoryRoutes = require('./routes/category');
+const supplierRoutes = require('./routes/supplier');
 
 // General middlewares
 app.use(morgan('dev'));
@@ -56,6 +57,7 @@ app.use('/address', addressRoutes);
 app.use('/brands', brandRoutes);
 app.use('/delivery-service', deliveryServiceRoutes);
 app.use('/categories', categoryRoutes);
+app.use('/suppliers', supplierRoutes);
 
 // Handling errors
 
