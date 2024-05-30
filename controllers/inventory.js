@@ -24,13 +24,21 @@ const getInventoryItem = async (req, res) => {
   }
 };
 
-const addEditInventoryItem = async (req, res) => {
+const createInventoryItem = async (req, res) => {
+	try {
+		await Inventory.createInventoryItem(req.body);
+		res.status(201).json({ message: 'New inventory item created succesfully' });
+	} catch (error) {
+			res.status(500).json({ message: error.message });
+	}
+}
+
+const editInventoryItem  = async (req, res) => {
   try {
-    const addInventory = await Inventory.addEditInventoryItem(req.params.id, req.body);
-    res.status(201).send('Created succesfully');
-    res.send(addInventory);
+    await Inventory.editInventoryItem(req.params.id, req.body);
+    res.status(201).json({ message: 'Inventory item updated successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
   }
 }
 
@@ -52,6 +60,7 @@ const deleteIventoryItem = async (req, res) => {
 module.exports = {
 	getInventory,
   getInventoryItem,
-  addEditInventoryItem,
+  createInventoryItem,
+  editInventoryItem,
   deleteIventoryItem
 };

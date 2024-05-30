@@ -11,7 +11,7 @@ const Category = {
     return category;
   },
 
-    editCategory: async (id, obj) => {
+  editCategory: async (id, obj) => {
 		const [{editedCategory}] = await db.query('CALL sp_edit_category(?,?)',
 		[
 			id,
