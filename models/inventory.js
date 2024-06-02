@@ -38,8 +38,6 @@ const Inventory = {
 	},
 
   editInventoryItem: async (id, obj) => {
-    console.log(id);
-    console.log(obj)
 		const [{editedInventory}] = await db.query('CALL sp_edit_inventory(?,?,?,?,?,?,?,?,?,?,?)',
 		[
       id, 

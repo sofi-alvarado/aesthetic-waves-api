@@ -1,4 +1,6 @@
 const express = require('express');
+const serverless = require("serverless-http");
+
 const morgan = require('morgan');
 
 const app = express();
@@ -8,16 +10,16 @@ require('express-async-errors');
 require('dotenv').config();
 
 const port = 5000;
-const db = require('./config/db');
+const db = require('../config/db');
 
-const productRoutes = require('./routes/products');
-const inventoryRoutes = require('./routes/inventory');
-const orderRoutes = require('./routes/orders');
-const addressRoutes = require('./routes/address');
-const brandRoutes = require('./routes/brand');
-const deliveryServiceRoutes = require('./routes/deliveryService');
-const categoryRoutes = require('./routes/category');
-const supplierRoutes = require('./routes/supplier');
+const productRoutes = require('../routes/products');
+const inventoryRoutes = require('../routes/inventory');
+const orderRoutes = require('../routes/orders');
+const addressRoutes = require('../routes/address');
+const brandRoutes = require('../routes/brand');
+const deliveryServiceRoutes = require('../routes/deliveryService');
+const categoryRoutes = require('../routes/category');
+const supplierRoutes = require('../routes/supplier');
 
 // General middlewares
 app.use(morgan('dev'));
@@ -28,8 +30,7 @@ app.use(bodyParser.json());
 db.query("SELECT 1")
   .then(() => {
     console.log('db connection succeed');
-		app.listen(port, 
-			() => console.log('Server started at 5000'));
+		app.use("/.netlify/functions/app");
   })
   .catch(err => console.log('Database connnection failed. \n' + err));
 
@@ -76,4 +77,4 @@ app.use((err, req, res, next) => {
   });
 })
 
-module.exports = app;
+module.exports.handler = serverless(app);
